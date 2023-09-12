@@ -1,16 +1,8 @@
 package wtf.choco.arrows;
 
-import java.util.Arrays;
-import java.util.Optional;
-import java.util.UUID;
-
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.SimplePie;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -22,39 +14,13 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.api.AlchemicalArrow;
-import wtf.choco.arrows.arrow.AlchemicalArrowAir;
-import wtf.choco.arrows.arrow.AlchemicalArrowChain;
-import wtf.choco.arrows.arrow.AlchemicalArrowConfusion;
-import wtf.choco.arrows.arrow.AlchemicalArrowDarkness;
-import wtf.choco.arrows.arrow.AlchemicalArrowDeath;
-import wtf.choco.arrows.arrow.AlchemicalArrowEarth;
-import wtf.choco.arrows.arrow.AlchemicalArrowEnder;
-import wtf.choco.arrows.arrow.AlchemicalArrowExplosive;
-import wtf.choco.arrows.arrow.AlchemicalArrowFire;
-import wtf.choco.arrows.arrow.AlchemicalArrowFrost;
-import wtf.choco.arrows.arrow.AlchemicalArrowGrapple;
-import wtf.choco.arrows.arrow.AlchemicalArrowLife;
-import wtf.choco.arrows.arrow.AlchemicalArrowLight;
-import wtf.choco.arrows.arrow.AlchemicalArrowMagic;
-import wtf.choco.arrows.arrow.AlchemicalArrowMagnetic;
-import wtf.choco.arrows.arrow.AlchemicalArrowNecrotic;
-import wtf.choco.arrows.arrow.AlchemicalArrowWater;
+import wtf.choco.arrows.arrow.*;
 import wtf.choco.arrows.commands.AlchemicalArrowsCommand;
 import wtf.choco.arrows.commands.GiveArrowCommand;
 import wtf.choco.arrows.commands.SummonArrowCommand;
 import wtf.choco.arrows.integration.alchema.PluginIntegrationAlchema;
-import wtf.choco.arrows.listeners.ArrowHitEntityListener;
-import wtf.choco.arrows.listeners.ArrowHitGroundListener;
-import wtf.choco.arrows.listeners.ArrowHitPlayerListener;
-import wtf.choco.arrows.listeners.ArrowRecipeDiscoverListener;
-import wtf.choco.arrows.listeners.CraftingPermissionListener;
-import wtf.choco.arrows.listeners.CrossbowLoadListener;
-import wtf.choco.arrows.listeners.CustomDeathMessageListener;
-import wtf.choco.arrows.listeners.PickupArrowListener;
-import wtf.choco.arrows.listeners.ProjectileShootListener;
-import wtf.choco.arrows.listeners.SkeletonKillListener;
+import wtf.choco.arrows.listeners.*;
 import wtf.choco.arrows.registry.ArrowRegistry;
 import wtf.choco.arrows.registry.ArrowStateManager;
 import wtf.choco.arrows.util.AAConstants;
@@ -63,6 +29,10 @@ import wtf.choco.arrows.util.NumberUtils;
 import wtf.choco.commons.integration.IntegrationHandler;
 import wtf.choco.commons.util.UpdateChecker;
 import wtf.choco.commons.util.UpdateChecker.UpdateReason;
+
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * The entry point of the AlchemicalArrows plugin and its API.
@@ -74,16 +44,31 @@ public class AlchemicalArrows extends JavaPlugin {
     public static final String CHAT_PREFIX = ChatColor.GOLD.toString() + ChatColor.BOLD + "AlchemicalArrows | " + ChatColor.GRAY;
 
     private static AlchemicalArrows instance;
-
+    private final IntegrationHandler integrationHandler = new IntegrationHandler(this);
     private ArrowStateManager stateManager;
     private ArrowRegistry arrowRegistry;
     private ArrowUpdateTask arrowUpdateTask;
-
     private boolean worldGuardEnabled = false;
-
     private ArrowRecipeDiscoverListener recipeListener;
 
-    private final IntegrationHandler integrationHandler = new IntegrationHandler(this);
+    /**
+     * Get an instance of AlchemicalArrows.
+     *
+     * @return the AlchemicalArrows instance
+     */
+    public static AlchemicalArrows getInstance() {
+        return instance;
+    }
+
+    /**
+     * Create a NamespacedKey with this plugin.
+     *
+     * @param key the key
+     * @return the created namespaced key
+     */
+    public static NamespacedKey key(String key) {
+        return new NamespacedKey(instance, key);
+    }
 
     @Override
     public void onLoad() {
@@ -159,14 +144,11 @@ public class AlchemicalArrows extends JavaPlugin {
 
                 if ((cauldronCrafting && alchemaEnabled) && vanillaCrafting) {
                     return "Both";
-                }
-                else if (cauldronCrafting && alchemaEnabled) {
+                } else if (cauldronCrafting && alchemaEnabled) {
                     return "Cauldron Crafting";
-                }
-                else if (vanillaCrafting) {
+                } else if (vanillaCrafting) {
                     return "Vanilla Crafting";
-                }
-                else {
+                } else {
                     return "Uncraftable";
                 }
             }));
@@ -202,28 +184,8 @@ public class AlchemicalArrows extends JavaPlugin {
 
         this.arrowRegistry.clear();
         this.stateManager.clear();
-        this.arrowUpdateTask.cancel();
+        ArrowUpdateTask.cancel();
         this.recipeListener.clearRecipeKeys();
-    }
-
-    /**
-     * Get an instance of AlchemicalArrows.
-     *
-     * @return the AlchemicalArrows instance
-     */
-    public static AlchemicalArrows getInstance() {
-        return instance;
-    }
-
-    /**
-     * Create a NamespacedKey with this plugin.
-     *
-     * @param key the key
-     *
-     * @return the created namespaced key
-     */
-    public static NamespacedKey key(String key) {
-        return new NamespacedKey(instance, key);
     }
 
     /**

@@ -1,13 +1,13 @@
 package wtf.choco.arrows.api.property;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
-
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * A map backed by a HashMap to associate a property to its set value. If no value has been
@@ -23,7 +23,7 @@ public final class PropertyMap {
      * Set a property's value that is to be recomputed every time it is fetched.
      *
      * @param property the property whose value to set
-     * @param value the value to set
+     * @param value    the value to set
      */
     public void setProperty(@NotNull ArrowProperty property, @NotNull Supplier<Object> value) {
         this.properties.put(property, new DynamicArrowPropertyValue(value));
@@ -33,7 +33,7 @@ public final class PropertyMap {
      * Set a property's value.
      *
      * @param property the property whose value to set
-     * @param value the value to set
+     * @param value    the value to set
      */
     public void setProperty(@NotNull ArrowProperty property, @Nullable Object value) {
         this.properties.put(property, new SimpleArrowProperty(value));
@@ -52,7 +52,6 @@ public final class PropertyMap {
      * Check whether the specified property has been explicitly set or not.
      *
      * @param property the property to check
-     *
      * @return true if set, false otherwise
      */
     public boolean hasProperty(@NotNull ArrowProperty property) {
@@ -63,9 +62,8 @@ public final class PropertyMap {
      * Get the value of the specified property. If the property has not yet
      * been set explicitly, the specified default value will instead be returned.
      *
-     * @param property the property whose value to get
+     * @param property     the property whose value to get
      * @param defaultValue the default value to return if not explicitly set
-     *
      * @return the property's value
      */
     @NotNull
@@ -78,7 +76,6 @@ public final class PropertyMap {
      * been set explicitly, the property's default value will be returned instead.
      *
      * @param property the property whose value to get
-     *
      * @return the property's value
      */
     @NotNull

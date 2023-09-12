@@ -12,7 +12,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public final class PersistentDataTypeNamespacedKey implements PersistentDataType<String, NamespacedKey> {
 
-    PersistentDataTypeNamespacedKey() { }
+    PersistentDataTypeNamespacedKey() {
+    }
 
     @Override
     @NotNull

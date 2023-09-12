@@ -1,9 +1,6 @@
 package wtf.choco.arrows.arrow;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -17,11 +14,12 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 import wtf.choco.arrows.api.property.ArrowProperty;
 import wtf.choco.commons.util.MathUtil;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AlchemicalArrowLife extends ConfigurableAlchemicalArrow {
 
@@ -31,10 +29,10 @@ public class AlchemicalArrowLife extends ConfigurableAlchemicalArrow {
     private static final int FLORAL_RADIUS_LIMIT = 5;
 
     private static final Material[] GROWABLE_MATERIALS = {
-        Material.ALLIUM, Material.AZURE_BLUET, Material.BLUE_ORCHID,
-        Material.DANDELION, Material.GRASS, Material.ORANGE_TULIP,
-        Material.OXEYE_DAISY, Material.PINK_TULIP, Material.POPPY,
-        Material.RED_TULIP, Material.WHITE_TULIP,
+            Material.ALLIUM, Material.AZURE_BLUET, Material.BLUE_ORCHID,
+            Material.DANDELION, Material.GRASS, Material.ORANGE_TULIP,
+            Material.OXEYE_DAISY, Material.PINK_TULIP, Material.POPPY,
+            Material.RED_TULIP, Material.WHITE_TULIP,
     };
 
     private final AlchemicalArrows plugin;

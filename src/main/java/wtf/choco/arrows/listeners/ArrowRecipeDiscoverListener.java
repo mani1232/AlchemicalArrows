@@ -1,14 +1,14 @@
 package wtf.choco.arrows.listeners;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerRecipeDiscoverEvent;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public final class ArrowRecipeDiscoverListener implements Listener {
 

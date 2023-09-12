@@ -6,10 +6,6 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.internal.platform.WorldGuardPlatform;
 import com.sk89q.worldguard.protection.flags.Flags;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
-
-import java.util.EnumSet;
-import java.util.Set;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -18,31 +14,29 @@ import org.bukkit.entity.Player;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 
+import java.util.EnumSet;
+import java.util.Set;
+
 public class ArrowEntityFire extends AlchemicalArrowEntity {
 
     private static final Set<Material> MELTABLE_BLOCKS = EnumSet.of(
-        Material.ICE,
-        Material.FROSTED_ICE,
-        Material.BLUE_ICE,
-        Material.SNOW_BLOCK,
-        Material.SNOW
+            Material.ICE,
+            Material.FROSTED_ICE,
+            Material.BLUE_ICE,
+            Material.SNOW_BLOCK,
+            Material.SNOW
     );
-
+    private final AlchemicalArrows plugin;
+    private final int ticksToMelt;
     private Block currentBlock;
     private int currentMeltingTicks;
     private Vector lastVelocity;
-
     private boolean inWorldGuardedBlock = false;
-
     private boolean extinguished = false;
-
-    private final AlchemicalArrows plugin;
-    private final int ticksToMelt;
 
     public ArrowEntityFire(@NotNull AlchemicalArrow implementation, @NotNull Arrow arrow, @NotNull AlchemicalArrows plugin, int ticksToMelt) {
         super(implementation, arrow);
@@ -51,12 +45,12 @@ public class ArrowEntityFire extends AlchemicalArrowEntity {
         this.ticksToMelt = ticksToMelt;
     }
 
-    public void setExtinguished(boolean extinguished) {
-        this.extinguished = extinguished;
-    }
-
     public boolean isExtinguished() {
         return extinguished;
+    }
+
+    public void setExtinguished(boolean extinguished) {
+        this.extinguished = extinguished;
     }
 
     public void tick() {

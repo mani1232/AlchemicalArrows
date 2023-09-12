@@ -1,12 +1,6 @@
 package wtf.choco.arrows.arrow;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Particle;
-import org.bukkit.Sound;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Waterlogged;
@@ -14,11 +8,12 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 import wtf.choco.arrows.api.property.ArrowProperty;
 import wtf.choco.arrows.arrow.entity.ArrowEntityFire;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AlchemicalArrowFire extends ConfigurableAlchemicalArrow {
 
@@ -62,8 +57,7 @@ public class AlchemicalArrowFire extends ConfigurableAlchemicalArrow {
                     world.playSound(location, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 1.0F, 1.2F);
                 }
             }
-        }
-        else {
+        } else {
             Material type = location.getBlock().getType();
 
             if (type == Material.LAVA || type == Material.FIRE) {

@@ -3,7 +3,6 @@ package wtf.choco.arrows.arrow.entity;
 import org.bukkit.entity.Arrow;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 

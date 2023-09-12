@@ -12,62 +12,62 @@ public interface ArrowPropertyValue {
      *
      * @return an int
      */
-    public int getAsInt();
+    int getAsInt();
 
     /**
      * Get this value as a primitive float.
      *
      * @return a float
      */
-    public float getAsFloat();
+    float getAsFloat();
 
     /**
      * Get this value as a primitive double.
      *
      * @return a double
      */
-    public double getAsDouble();
+    double getAsDouble();
 
     /**
      * Get this value as a primitive long.
      *
      * @return a long
      */
-    public long getAsLong();
+    long getAsLong();
 
     /**
      * Get this value as a primitive short.
      *
      * @return a short
      */
-    public short getAsShort();
+    short getAsShort();
 
     /**
      * Get this value as a primitive byte.
      *
      * @return a byte
      */
-    public byte getAsByte();
+    byte getAsByte();
 
     /**
      * Get this value as a primitive boolean.
      *
      * @return a boolean
      */
-    public boolean getAsBoolean();
+    boolean getAsBoolean();
 
     /**
      * Get this value as a String.
      *
      * @return a string
      */
-    public String getAsString();
+    String getAsString();
 
     /**
      * Get this value.
      *
      * @return the value
      */
-    public Object getValue();
+    Object getValue();
 
 }

@@ -12,7 +12,6 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.projectiles.BlockProjectileSource;
 import org.bukkit.projectiles.ProjectileSource;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 import wtf.choco.arrows.util.AAConstants;
@@ -50,12 +49,10 @@ public final class CustomDeathMessageListener implements Listener {
         if (source instanceof Player killer) {
             String message = config.getString(AAConstants.CONFIG_DEATH_MESSAGES_DEATH_BY_PLAYER, "%player% was killed by %killer% using a %type%");
             event.setDeathMessage(message.replace("%player%", killedName).replace("%killer%", killer.getName()).replace("%type%", arrowType));
-        }
-        else if (source instanceof Skeleton) {
+        } else if (source instanceof Skeleton) {
             String message = config.getString(AAConstants.CONFIG_DEATH_MESSAGES_DEATH_BY_SKELETON, "%player% was killed by a skeleton using a %type%");
             event.setDeathMessage(message.replace("%player%", killedName).replace("%type%", arrowType));
-        }
-        else if (source instanceof BlockProjectileSource) {
+        } else if (source instanceof BlockProjectileSource) {
             String message = config.getString(AAConstants.CONFIG_DEATH_MESSAGES_DEATH_BY_BLOCK_SOURCE, "%player% was shot using a %type%");
             event.setDeathMessage(message.replace("%player%", killedName).replace("%type%", arrowType));
         }

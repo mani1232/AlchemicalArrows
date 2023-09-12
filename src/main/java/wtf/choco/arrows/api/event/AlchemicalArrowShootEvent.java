@@ -4,7 +4,6 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.projectiles.ProjectileSource;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 
 /**
@@ -15,20 +14,22 @@ import wtf.choco.arrows.api.AlchemicalArrowEntity;
 public class AlchemicalArrowShootEvent extends AlchemicalArrowEvent implements Cancellable {
 
     private static final HandlerList HANDLERS = new HandlerList();
-
-    private boolean cancelled = false;
-
     private final ProjectileSource shooter;
+    private boolean cancelled = false;
 
     /**
      * Construct a new AlchemicalArrowShootEvent
      *
-     * @param arrow the arrow that was shot
+     * @param arrow   the arrow that was shot
      * @param shooter the source of the arrow
      */
     public AlchemicalArrowShootEvent(@NotNull AlchemicalArrowEntity arrow, @NotNull ProjectileSource shooter) {
         super(arrow);
         this.shooter = shooter;
+    }
+
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
     }
 
     /**
@@ -42,21 +43,17 @@ public class AlchemicalArrowShootEvent extends AlchemicalArrowEvent implements C
     }
 
     @Override
-    public void setCancelled(boolean cancel) {
-        this.cancelled = cancel;
-    }
-
-    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
     @Override
-    public HandlerList getHandlers() {
-        return HANDLERS;
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return HANDLERS;
     }
 

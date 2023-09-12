@@ -2,7 +2,6 @@ package wtf.choco.arrows.util;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.permissions.Permissible;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 
@@ -36,19 +35,17 @@ public final class AAConstants {
 
     // Permission nodes
     public static final String PERMISSION_WORLDGUARD_OVERRIDE = "alchemicalarrows.worldguard.override";
-
-    private static final String PERMISSION_SHOOT_ARROW = "alchemicalarrows.shoot.%s"; // See #hasPermissionShootArrow()
-    private static final String PERMISSION_CRAFT_ARROW = "alchemicalarrows.craft.%s"; // See #hasPermissionCraftArrow()
-
     public static final String PERMISSION_COMMAND_CLEAR = "alchemicalarrows.command.clear";
     public static final String PERMISSION_COMMAND_RELOAD = "alchemicalarrows.command.reload";
     public static final String PERMISSION_COMMAND_GIVEARROW = "alchemicalarrows.command.givearrow";
     public static final String PERMISSION_COMMAND_SUMMONARROW = "alchemicalarrows.command.summonarrow";
-
     // Persistent data keys
     public static final NamespacedKey KEY_TYPE = AlchemicalArrows.key("type");
+    private static final String PERMISSION_SHOOT_ARROW = "alchemicalarrows.shoot.%s"; // See #hasPermissionShootArrow()
+    private static final String PERMISSION_CRAFT_ARROW = "alchemicalarrows.craft.%s"; // See #hasPermissionCraftArrow()
 
-    private AAConstants() { }
+    private AAConstants() {
+    }
 
     public static boolean hasPermissionShootArrow(Permissible permissible, AlchemicalArrow arrow) {
         return permissible.hasPermission(PERMISSION_SHOOT_ARROW.formatted(arrow.getKey().getKey()));

@@ -1,7 +1,5 @@
 package wtf.choco.arrows.api;
 
-import java.util.Objects;
-
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -18,11 +16,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.projectiles.BlockProjectileSource;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.api.property.ArrowProperty;
 import wtf.choco.arrows.api.property.PropertyMap;
 import wtf.choco.arrows.persistence.AAPersistentDataTypes;
 import wtf.choco.arrows.util.AAConstants;
+
+import java.util.Objects;
 
 /**
  * Represents the base of an alchemical arrow with special effects upon hitting a
@@ -89,7 +88,6 @@ public abstract class AlchemicalArrow {
      * an inventory. This arrow can be shot by a player.
      *
      * @param amount the item amount
-     *
      * @return the item stack
      */
     public final ItemStack createItemStack(int amount) {
@@ -103,7 +101,6 @@ public abstract class AlchemicalArrow {
      * AlchemicalArrow.
      *
      * @param item the item to check
-     *
      * @return true if valid, false otherwise
      */
     public boolean matchesItem(ItemStack item) {
@@ -129,10 +126,11 @@ public abstract class AlchemicalArrow {
      * Called 20 times every second. This method is intended for displaying particles around
      * the arrow, performing tasks whilst the arrow is still in the world, etc.
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow    the alchemical arrow entity instance
      * @param location the arrow's current location at this tick
      */
-    public void tick(@NotNull AlchemicalArrowEntity arrow, @NotNull Location location) { }
+    public void tick(@NotNull AlchemicalArrowEntity arrow, @NotNull Location location) {
+    }
 
     /**
      * Called when the arrow hits a solid block
@@ -140,33 +138,35 @@ public abstract class AlchemicalArrow {
      * @param arrow the alchemical arrow entity instance
      * @param block the block on which the arrow landed
      */
-    public void onHitBlock(@NotNull AlchemicalArrowEntity arrow, @NotNull Block block) { }
+    public void onHitBlock(@NotNull AlchemicalArrowEntity arrow, @NotNull Block block) {
+    }
 
     /**
      * Called when the arrow hits a player
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow  the alchemical arrow entity instance
      * @param player the player damaged by the arrow
      */
-    public void onHitPlayer(@NotNull AlchemicalArrowEntity arrow, @NotNull Player player) { }
+    public void onHitPlayer(@NotNull AlchemicalArrowEntity arrow, @NotNull Player player) {
+    }
 
     /**
      * Called when the arrow hits an entity (this excludes Players. For Players, see
      * {@link #onHitPlayer(AlchemicalArrowEntity, Player)})
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow  the alchemical arrow entity instance
      * @param entity the entity damaged by the arrow
      */
-    public void onHitEntity(@NotNull AlchemicalArrowEntity arrow, @NotNull Entity entity) { }
+    public void onHitEntity(@NotNull AlchemicalArrowEntity arrow, @NotNull Entity entity) {
+    }
 
     /**
      * Called at low priority when a player has successfully shot this alchemical arrow,
      * but it has yet to be registered. Such that this method returns true, the alchemical
      * arrow will be launched
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow  the alchemical arrow entity instance
      * @param player the player that shot the arrow
-     *
      * @return whether the shot should be permitted or not
      */
     public boolean onShootFromPlayer(@NotNull AlchemicalArrowEntity arrow, @NotNull Player player) {
@@ -179,9 +179,8 @@ public abstract class AlchemicalArrow {
      * arrow will be launched. The {@link ArrowProperty#SKELETONS_CAN_SHOOT} property must
      * return true in order for this method to be invoked
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow    the alchemical arrow entity instance
      * @param skeleton the skeleton that shot the arrow
-     *
      * @return whether the shot should be permitted or not
      */
     public boolean onShootFromSkeleton(@NotNull AlchemicalArrowEntity arrow, @NotNull Skeleton skeleton) {
@@ -193,9 +192,8 @@ public abstract class AlchemicalArrow {
      * shoots an arrow, but it has yet to be registered. Such that this method returns
      * true, the alchemical arrow will be launched
      *
-     * @param arrow the alchemical arrow entity instance
+     * @param arrow  the alchemical arrow entity instance
      * @param source the block source that shot the arrow
-     *
      * @return whether the shot should be permitted or not
      */
     public boolean onShootFromBlockSource(@NotNull AlchemicalArrowEntity arrow, @NotNull BlockProjectileSource source) {
@@ -210,7 +208,8 @@ public abstract class AlchemicalArrow {
      * @param arrow the alchemical arrow entity instance
      * @param event the EntityDamageByEntityEvent source
      */
-    public void hitEntityEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull EntityDamageByEntityEvent event) { }
+    public void hitEntityEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull EntityDamageByEntityEvent event) {
+    }
 
     /**
      * Called the instant before {@link #onHitBlock(AlchemicalArrowEntity, Block)} is called.
@@ -219,7 +218,8 @@ public abstract class AlchemicalArrow {
      * @param arrow the alchemical arrow entity instance
      * @param event the ProjectileHitEvent source
      */
-    public void hitGroundEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull ProjectileHitEvent event) { }
+    public void hitGroundEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull ProjectileHitEvent event) {
+    }
 
     /**
      * Called the instant before {@link #onShootFromPlayer(AlchemicalArrowEntity, Player)},
@@ -230,7 +230,8 @@ public abstract class AlchemicalArrow {
      * @param arrow the alchemical arrow entity instance
      * @param event the ProjectileLaunchEvent source
      */
-    public void shootEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull ProjectileLaunchEvent event) { }
+    public void shootEventHandler(@NotNull AlchemicalArrowEntity arrow, @NotNull ProjectileLaunchEvent event) {
+    }
 
     /**
      * Create a new instance of an {@link AlchemicalArrowEntity}. If a custom AlchemicalArrowEntity
@@ -240,7 +241,6 @@ public abstract class AlchemicalArrow {
      * methods and override them where required
      *
      * @param arrow the Bukkit {@link Arrow} instance from which to create an AlchemicalArrowEntity
-     *
      * @return the new AlchemicalArrowEntity instance of this implementation
      */
     @NotNull

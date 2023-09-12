@@ -3,7 +3,6 @@ package wtf.choco.arrows.integration.alchema;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.alchema.api.event.CauldronRecipeRegisterEvent;
 import wtf.choco.alchema.crafting.CauldronRecipeRegistry;
 

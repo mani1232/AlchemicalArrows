@@ -2,14 +2,6 @@ package wtf.choco.arrows.registry;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
@@ -19,11 +11,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.persistence.AAPersistentDataTypes;
 import wtf.choco.arrows.util.AAConstants;
+
+import java.util.*;
 
 /**
  * Handles the registration of {@link AlchemicalArrow} implementations.
@@ -45,11 +38,10 @@ public final class ArrowRegistry implements Iterable<AlchemicalArrow> {
      * a unique, non-null ItemStack of type {@link Material#ARROW}.
      *
      * @param arrow the arrow implementation to register
-     *
      * @throws IllegalArgumentException if arrow, its key or its ItemStack is null, or if the ItemStack
-     * is not of type {@link Material#ARROW}
-     * @throws IllegalStateException if an arrow with the ID has already been registered, or an arrow
-     * with the ItemStack has already been registered
+     *                                  is not of type {@link Material#ARROW}
+     * @throws IllegalStateException    if an arrow with the ID has already been registered, or an arrow
+     *                                  with the ItemStack has already been registered
      */
     public void register(@NotNull AlchemicalArrow arrow) {
         Preconditions.checkArgument(arrow != null, "Cannot register null arrow");
@@ -108,9 +100,8 @@ public final class ArrowRegistry implements Iterable<AlchemicalArrow> {
      * to construct a new instance of the AlchemicalArrowEntity such that an instance of {@link Arrow}
      * is provided.
      *
-     * @param <T> the alchemical arrow class type
+     * @param <T>   the alchemical arrow class type
      * @param clazz the class of the AlchemicalArrow whose registration to get
-     *
      * @return the registered AlchemicalArrow. null if none
      */
     @Nullable
@@ -131,7 +122,6 @@ public final class ArrowRegistry implements Iterable<AlchemicalArrow> {
      * of {@link Arrow} is provided.
      *
      * @param item the item of the AlchemicalArrow instance to retrieve
-     *
      * @return the registered AlchemicalArrow represented by the provided ItemStack. null if none
      */
     @Nullable
@@ -155,7 +145,6 @@ public final class ArrowRegistry implements Iterable<AlchemicalArrow> {
      * of {@link Arrow} is provided.
      *
      * @param key the unique key of the AlchemicalArrow instance to retrieve
-     *
      * @return the registered AlchemicalArrow represented by the provided ItemStack. null if none
      */
     @Nullable
@@ -171,7 +160,6 @@ public final class ArrowRegistry implements Iterable<AlchemicalArrow> {
      * of {@link Arrow} is provided.
      *
      * @param key the registered NamespacedKey of the AlchemicalArrow instance to retrieve
-     *
      * @return the registered AlchemicalArrow represented by the provided key. null if none
      */
     @Nullable

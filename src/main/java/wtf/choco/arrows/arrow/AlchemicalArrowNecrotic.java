@@ -1,7 +1,5 @@
 package wtf.choco.arrows.arrow;
 
-import java.util.Iterator;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
@@ -14,9 +12,10 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
+
+import java.util.Iterator;
 
 public class AlchemicalArrowNecrotic extends ConfigurableAlchemicalArrow {
 

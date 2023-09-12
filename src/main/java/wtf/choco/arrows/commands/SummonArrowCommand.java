@@ -1,16 +1,6 @@
 package wtf.choco.arrows.commands;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.StringJoiner;
-import java.util.stream.Collectors;
-
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
-import org.bukkit.World;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -22,7 +12,6 @@ import org.bukkit.util.StringUtil;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
@@ -32,6 +21,12 @@ import wtf.choco.arrows.util.AAConstants;
 import wtf.choco.arrows.util.NumberUtils;
 import wtf.choco.commons.util.MathUtil;
 import wtf.choco.commons.util.NamespacedKeyUtil;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import static wtf.choco.arrows.AlchemicalArrows.CHAT_PREFIX;
 
@@ -126,17 +121,11 @@ public class SummonArrowCommand implements TabExecutor {
             }
 
             return suggestions;
-        }
-
-        else if (args.length >= 2 && args.length < 5) {
+        } else if (args.length >= 2 && args.length < 5) {
             return buildTupleSuggestions(args, 5, "~");
-        }
-
-        else if (args.length == 5) {
+        } else if (args.length == 5) {
             return StringUtil.copyPartialMatches(args[4], Bukkit.getWorlds().stream().map(World::getName).collect(Collectors.toList()), new ArrayList<>());
-        }
-
-        else if (args.length >= 6 && args.length < 9) {
+        } else if (args.length >= 6 && args.length < 9) {
             return buildTupleSuggestions(args, 9, "0.0");
         }
 

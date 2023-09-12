@@ -1,6 +1,5 @@
 package wtf.choco.arrows.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -12,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CrossbowMeta;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.util.AAConstants;
@@ -66,7 +64,7 @@ public final class CrossbowLoadListener implements Listener {
 
         event.setCancelled(true);
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        plugin.getServer().getRegionScheduler().runDelayed(plugin, player.getLocation(), scheduledTask -> {
             arrow.setAmount(arrow.getAmount() - 1);
 
             player.setItemOnCursor(arrow.getAmount() <= 0 ? null : arrow);
@@ -75,7 +73,7 @@ public final class CrossbowLoadListener implements Listener {
             if (player instanceof Player) {
                 ((Player) player).playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 1.5F, 1.4F);
             }
-        }, 1L);
+        }, 1);
     }
 
 }

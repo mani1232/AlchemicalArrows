@@ -1,7 +1,5 @@
 package wtf.choco.arrows.arrow;
 
-import java.util.stream.Collectors;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
@@ -13,7 +11,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.jetbrains.annotations.ApiStatus.Internal;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
@@ -23,18 +20,18 @@ import wtf.choco.arrows.util.NumberUtils;
 import wtf.choco.commons.util.ItemBuilder;
 import wtf.choco.commons.util.MathUtil;
 
+import java.util.stream.Collectors;
+
 @Internal
 public abstract class ConfigurableAlchemicalArrow extends AlchemicalArrow {
 
-    private String name;
-    private ItemStack item;
-
     private final String defaultName;
     private final int defaultModelData;
-
     private final AlchemicalArrows plugin;
     private final NamespacedKey key;
     private final String configPath;
+    private String name;
+    private ItemStack item;
 
     protected ConfigurableAlchemicalArrow(AlchemicalArrows plugin, String key, String defaultName, int defaultModelData) {
         this.plugin = plugin;
@@ -83,26 +80,26 @@ public abstract class ConfigurableAlchemicalArrow extends AlchemicalArrow {
         Color colour = null;
         String colourRaw = arrowSection.getString("Colour");
         if (colourRaw != null) {
-           String[] rgbSplitRaw = colourRaw.split("\\s*,\\s*");
-           if (rgbSplitRaw.length != 3) {
-               this.plugin.getLogger().warning("Attempted to set colour with invalid RGB. Expected 'r,g,b', received '" + colourRaw + "'. Arrow = " + key + ". Ignoring...");
-           }
+            String[] rgbSplitRaw = colourRaw.split("\\s*,\\s*");
+            if (rgbSplitRaw.length != 3) {
+                this.plugin.getLogger().warning("Attempted to set colour with invalid RGB. Expected 'r,g,b', received '" + colourRaw + "'. Arrow = " + key + ". Ignoring...");
+            }
 
-           int r = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[0]), 0, 255);
-           int g = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[1]), 0, 255);
-           int b = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[2]), 0, 255);
+            int r = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[0]), 0, 255);
+            int g = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[1]), 0, 255);
+            int b = MathUtil.clamp(NumberUtils.toInt(rgbSplitRaw[2]), 0, 255);
 
-           colour = Color.fromRGB(r, g, b);
+            colour = Color.fromRGB(r, g, b);
         }
 
         Color colourFinal = colour; // Stupid lambdas -,-
         ItemBuilder itemBuilder = ItemBuilder.of(colour != null ? Material.TIPPED_ARROW : Material.ARROW)
-            .name(name)
-            .lore(arrowSection.getStringList("Item.Lore").stream()
-                .map(line -> ChatColor.translateAlternateColorCodes('&', line))
-                .collect(Collectors.toList())
-            )
-            .modelData(arrowSection.getInt("Item.CustomModelData", defaultModelData));
+                .name(name)
+                .lore(arrowSection.getStringList("Item.Lore").stream()
+                        .map(line -> ChatColor.translateAlternateColorCodes('&', line))
+                        .collect(Collectors.toList())
+                )
+                .modelData(arrowSection.getInt("Item.CustomModelData", defaultModelData));
 
         if (colour != null) {
             itemBuilder.specific(PotionMeta.class, meta -> {

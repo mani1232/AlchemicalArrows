@@ -1,9 +1,5 @@
 package wtf.choco.arrows.listeners;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
-
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Skeleton;
@@ -12,11 +8,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.property.ArrowProperty;
 import wtf.choco.arrows.util.AAConstants;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 public final class SkeletonKillListener implements Listener {
 

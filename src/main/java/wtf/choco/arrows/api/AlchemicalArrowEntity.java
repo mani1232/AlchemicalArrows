@@ -1,14 +1,13 @@
 package wtf.choco.arrows.api;
 
 import com.google.common.base.Preconditions;
-
-import java.util.Objects;
-
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 /**
  * Represents an in-world {@link AlchemicalArrow} implementation. This instance wraps a
@@ -28,7 +27,7 @@ public class AlchemicalArrowEntity {
      * Construct a new instance of AlchemicalArrowEntity given a type and arrow
      *
      * @param implementation the alchemical arrow implementation to create
-     * @param arrow the Bukkit arrow to wrap
+     * @param arrow          the Bukkit arrow to wrap
      */
     public AlchemicalArrowEntity(@NotNull AlchemicalArrow implementation, @NotNull Arrow arrow) {
         Preconditions.checkNotNull(implementation, "Cannot create an arrow of type null");
@@ -96,11 +95,10 @@ public class AlchemicalArrowEntity {
             return true;
         }
 
-        if (!(object instanceof AlchemicalArrowEntity)) {
+        if (!(object instanceof AlchemicalArrowEntity other)) {
             return false;
         }
 
-        AlchemicalArrowEntity other = (AlchemicalArrowEntity) object;
         return Objects.equals(implementation, other.implementation) && Objects.equals(arrow, other.arrow);
     }
 

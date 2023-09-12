@@ -1,22 +1,16 @@
 package wtf.choco.arrows.registry;
 
 import com.google.common.base.Preconditions;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
 import org.bukkit.World;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Handles the in-world entities for {@link AlchemicalArrow} types. All alchemical arrows in the
@@ -67,7 +61,6 @@ public final class ArrowStateManager {
      * Get the {@link AlchemicalArrowEntity} associated with the provided {@link AbstractArrow}.
      *
      * @param arrow the Bukkit arrow from which to get an alchemical arrow
-     *
      * @return an instance of the alchemical arrow entity. null if not stated
      */
     @Nullable
@@ -79,7 +72,6 @@ public final class ArrowStateManager {
      * Get the {@link AlchemicalArrowEntity} associated with the provided {@link UUID}.
      *
      * @param uuid the UUID of the arrow from which to get an alchemical arrow
-     *
      * @return an instance of the alchemical arrow entity. null if none
      */
     @Nullable
@@ -103,7 +95,6 @@ public final class ArrowStateManager {
      * specified world.
      *
      * @param world the world from which to query arrows
-     *
      * @return all actively stated arrows in the specified world
      */
     @NotNull
@@ -116,11 +107,9 @@ public final class ArrowStateManager {
      * Get an unmodifiable collection of all {@link AlchemicalArrowEntity} states of the
      * specified arrow entity type.
      *
-     * @param <T> the arrow entity type
+     * @param <T>  the arrow entity type
      * @param type the type of arrows to get
-     *
      * @return all actively stated arrows of the specified type
-     *
      * @see #getArrowsOfType(Class)
      */
     @NotNull
@@ -134,9 +123,7 @@ public final class ArrowStateManager {
      * specified {@link AlchemicalArrow} type.
      *
      * @param type the type of arrows to get
-     *
      * @return all actively stated arrows of the specified type
-     *
      * @see #getArrows(Class)
      */
     @NotNull

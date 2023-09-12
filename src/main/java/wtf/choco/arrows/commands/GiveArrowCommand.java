@@ -1,11 +1,5 @@
 package wtf.choco.arrows.commands;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -16,7 +10,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.registry.ArrowRegistry;
@@ -25,10 +18,17 @@ import wtf.choco.arrows.util.NumberUtils;
 import wtf.choco.commons.util.MathUtil;
 import wtf.choco.commons.util.NamespacedKeyUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static wtf.choco.arrows.AlchemicalArrows.CHAT_PREFIX;
 
 public class GiveArrowCommand implements TabExecutor {
 
+    private static final List<String> NUMBER_ARGS = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
     private final AlchemicalArrows plugin;
     private final ArrowRegistry arrowRegistry;
 
@@ -50,7 +50,7 @@ public class GiveArrowCommand implements TabExecutor {
         }
 
         int giveCount = (args.length >= 2) ? MathUtil.clamp(NumberUtils.toInt(args[1], 1), 1, 64) : 1;
-        List<Player> targets = (sender instanceof Player player) ? Arrays.asList(player) : Collections.EMPTY_LIST;
+        List<Player> targets = (sender instanceof Player player) ? List.of(player) : Collections.EMPTY_LIST;
 
         if (args.length >= 3) {
             try {
@@ -101,8 +101,6 @@ public class GiveArrowCommand implements TabExecutor {
         return true;
     }
 
-    private static final List<String> NUMBER_ARGS = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
-
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (args.length == 1) {
@@ -116,13 +114,9 @@ public class GiveArrowCommand implements TabExecutor {
             }
 
             return arguments;
-        }
-
-        else if (args.length == 2) {
+        } else if (args.length == 2) {
             return args[1].isEmpty() ? NUMBER_ARGS : Collections.emptyList();
-        }
-
-        else if (args.length == 3) {
+        } else if (args.length == 3) {
             return null; // Player names
         }
 

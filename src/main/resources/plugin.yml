@@ -6,6 +6,8 @@ author: Choco
 softdepend: [ WorldGuard, Alchema ]
 api-version: 1.16
 
+folia-supported: true
+
 commands:
   alchemicalarrows:
     description: The administrative AlchemicalArrows command

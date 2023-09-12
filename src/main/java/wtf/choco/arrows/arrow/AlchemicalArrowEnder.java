@@ -5,14 +5,9 @@ import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.entity.AbstractArrow;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.Vector;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 import wtf.choco.arrows.api.property.ArrowProperty;
@@ -64,11 +59,10 @@ public class AlchemicalArrowEnder extends ConfigurableAlchemicalArrow {
         }
 
         ProjectileSource shooter = arrow.getArrow().getShooter();
-        if (!(shooter instanceof LivingEntity)) {
+        if (!(shooter instanceof LivingEntity shooterEntity)) {
             return;
         }
 
-        LivingEntity shooterEntity = (LivingEntity) shooter;
         Location shooterLocation = shooterEntity.getLocation();
 
         arrow.getArrow().remove(); // Remove the arrow before we teleport the player

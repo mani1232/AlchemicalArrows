@@ -1,13 +1,6 @@
 package wtf.choco.arrows.listeners;
 
 import com.google.common.collect.Iterables;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.block.Block;
@@ -28,13 +21,14 @@ import org.bukkit.inventory.meta.CrossbowMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.projectiles.BlockProjectileSource;
 import org.bukkit.projectiles.ProjectileSource;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 import wtf.choco.arrows.api.event.AlchemicalArrowShootEvent;
 import wtf.choco.arrows.api.property.ArrowProperty;
 import wtf.choco.arrows.util.AAConstants;
+
+import java.util.*;
 
 public final class ProjectileShootListener implements Listener {
 
@@ -94,8 +88,7 @@ public final class ProjectileShootListener implements Listener {
                     if (shooter instanceof Player player) {
                         player.updateInventory();
                     }
-                }
-                else if (shooter instanceof Player player && player.getGameMode() != GameMode.CREATIVE) {
+                } else if (shooter instanceof Player player && player.getGameMode() != GameMode.CREATIVE) {
                     event.setConsumeItem(true);
                 } else {
                     arrow.setPickupStatus(PickupStatus.CREATIVE_ONLY);
@@ -141,11 +134,10 @@ public final class ProjectileShootListener implements Listener {
     @EventHandler
     public void onDispenserShootAlchemicalArrow(ProjectileLaunchEvent event) {
         ProjectileSource source = event.getEntity().getShooter();
-        if (!(source instanceof BlockProjectileSource) || !(event.getEntity() instanceof Arrow)) {
+        if (!(source instanceof BlockProjectileSource blockSource) || !(event.getEntity() instanceof Arrow)) {
             return;
         }
 
-        BlockProjectileSource blockSource = (BlockProjectileSource) source;
         AlchemicalArrow alchemicalArrow = recentlyDispensed.remove(blockSource.getBlock());
         if (alchemicalArrow == null) {
             return;
@@ -170,8 +162,7 @@ public final class ProjectileShootListener implements Listener {
     private boolean handleOnShootFromSource(AlchemicalArrow alchemicalArrow, AlchemicalArrowEntity alchemicalArrowEntity, LivingEntity entity) {
         if (entity instanceof Player) {
             return alchemicalArrow.onShootFromPlayer(alchemicalArrowEntity, (Player) entity);
-        }
-        else if (entity instanceof Skeleton) {
+        } else if (entity instanceof Skeleton) {
             return alchemicalArrow.onShootFromSkeleton(alchemicalArrowEntity, (Skeleton) entity);
         }
 

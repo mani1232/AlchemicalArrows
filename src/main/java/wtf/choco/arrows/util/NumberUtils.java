@@ -2,7 +2,8 @@ package wtf.choco.arrows.util;
 
 public final class NumberUtils {
 
-    private NumberUtils() { }
+    private NumberUtils() {
+    }
 
     public static int toInt(String value) {
         return toInt(value, 0);

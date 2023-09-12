@@ -2,7 +2,6 @@ package wtf.choco.arrows.api.event;
 
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
-
 import wtf.choco.arrows.api.AlchemicalArrowEntity;
 
 /**

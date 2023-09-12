@@ -1,15 +1,13 @@
 package wtf.choco.arrows.api.property;
 
 import com.google.common.base.Preconditions;
-
-import java.util.Objects;
-
 import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 import wtf.choco.arrows.AlchemicalArrows;
 import wtf.choco.arrows.api.AlchemicalArrow;
+
+import java.util.Objects;
 
 /**
  * Represents a single-value property held by an {@link AlchemicalArrow}.
@@ -45,7 +43,7 @@ public class ArrowProperty {
     /**
      * Construct a new ArrowProperty given an ID, type and default value.
      *
-     * @param key the unique namespaced key
+     * @param key          the unique namespaced key
      * @param defaultValue the value to which this property will default if not explicitly set
      */
     public ArrowProperty(@NotNull NamespacedKey key, @Nullable Object defaultValue) {
