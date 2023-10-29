@@ -80,9 +80,9 @@ public class AlchemicalArrowEnder extends ConfigurableAlchemicalArrow {
         Vector targetVelocity = target.getVelocity();
 
         // Swap player locations
-        target.teleport(shooter.getLocation());
+        target.teleportAsync(shooter.getLocation());
         target.setVelocity(shooter.getVelocity());
-        shooter.teleport(targetLocation);
+        shooter.teleportAsync(targetLocation);
         shooter.setVelocity(targetVelocity);
 
         // Play sounds and display particles

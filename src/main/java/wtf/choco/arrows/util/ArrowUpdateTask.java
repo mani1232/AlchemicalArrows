@@ -15,6 +15,7 @@ public final class ArrowUpdateTask implements Runnable {
 
     private static ArrowUpdateTask instance = null;
     private static ScheduledTask task;
+    private static AlchemicalArrows thisPlugin;
 
     private final List<AlchemicalArrowEntity> purgeBuffer = new ArrayList<>(16);
     private final ArrowStateManager stateManager;
@@ -26,7 +27,7 @@ public final class ArrowUpdateTask implements Runnable {
     @NotNull
     public static ArrowUpdateTask startArrowUpdateTask(@NotNull AlchemicalArrows plugin) {
         Preconditions.checkNotNull(plugin, "Cannot pass null instance of plugin");
-
+        thisPlugin = plugin;
 
         if (instance == null) {
             instance = new ArrowUpdateTask(plugin.getArrowStateManager());
@@ -47,12 +48,13 @@ public final class ArrowUpdateTask implements Runnable {
     public void run() {
         for (AlchemicalArrowEntity arrow : stateManager.getArrows()) {
             AbstractArrow bukkitArrow = arrow.getArrow();
-            if (!bukkitArrow.isValid()) {
-                this.purgeBuffer.add(arrow);
-                continue;
-            }
+            thisPlugin.getServer().getRegionScheduler().execute(thisPlugin, bukkitArrow.getLocation(), () -> {
+                if (!bukkitArrow.isValid()) {
+                    this.purgeBuffer.add(arrow);
+                }
 
-            arrow.getImplementation().tick(arrow, bukkitArrow.getLocation());
+                arrow.getImplementation().tick(arrow, bukkitArrow.getLocation());
+            });
         }
 
         if (purgeBuffer.size() >= 1) {
